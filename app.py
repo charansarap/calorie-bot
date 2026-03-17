@@ -3,7 +3,7 @@ from twilio.twiml.messaging_response import MessagingResponse
 from openai import OpenAI
 
 app = Flask(__name__)
-client = OpenAI(api_key="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")
+client = OpenAI(api_key="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")
 
 @app.route("/webhook", methods=["POST"])
 def webhook():

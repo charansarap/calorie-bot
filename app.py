@@ -26,7 +26,6 @@ SYSTEM_PROMPT = (
     "Keep responses friendly, use emojis, be concise."
 )
 
-# ✅ Web chat route
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -44,7 +43,6 @@ def chat():
     reply = ai_response.choices[0].message.content
     return jsonify({"reply": reply})
 
-# ✅ WhatsApp webhook route (Twilio still works!)
 @app.route("/webhook", methods=["POST"])
 def webhook():
     user_msg = request.form.get("Body", "")
@@ -61,4 +59,5 @@ def webhook():
     return str(resp)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 10000))
+    app.run(host="0.0.0.0", port=port, debug=False)
